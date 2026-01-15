@@ -160,7 +160,10 @@ function render() {
 
 // Auth buttons
 loginBtn.onclick = async () => {
-  await signInWithPopup(auth, provider); // GitHub login via Firebase :contentReference[oaicite:7]{index=7}
+  loginBtn.onclick = async () => {
+  await signInWithPopup(auth, provider);
+};
+
 };
 logoutBtn.onclick = async () => {
   await signOut(auth);
