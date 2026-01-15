@@ -79,18 +79,20 @@ function renderMonths(y) {
 
   monthsEl.innerHTML = "";
 
-  const start = new Date(y, 0, 1);
-  const startDow = start.getDay(); // 0=Sun
   const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-  const weekIndex = (date) => {
-    const diffDays = Math.floor((date - start) / 86400000);
+  // Use UTC to avoid DST causing off-by-one week shifts
+  const startUTC = Date.UTC(y, 0, 1);
+  const startDow = new Date(startUTC).getUTCDay(); // 0=Sun..6=Sat
+
+  const weekIndexUTC = (yy, mm, dd) => {
+    const t = Date.UTC(yy, mm, dd);
+    const diffDays = Math.floor((t - startUTC) / 86400000);
     return Math.floor((startDow + diffDays) / 7);
   };
 
   for (let m = 0; m < 12; m++) {
-    const d = new Date(y, m, 1);
-    const col = weekIndex(d);
+    const col = weekIndexUTC(y, m, 1);
 
     const label = document.createElement("div");
     label.textContent = names[m];
@@ -99,6 +101,7 @@ function renderMonths(y) {
     monthsEl.appendChild(label);
   }
 }
+
 
 
 
