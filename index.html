@@ -12,6 +12,24 @@
     .cell { width:12px; height:12px; border-radius:3px; background:#eee; border:1px solid rgba(0,0,0,.06); cursor:pointer; }
     .cell:hover { outline: 2px solid rgba(0,0,0,.15); outline-offset: 1px; }
     #tooltip { position: fixed; display:none; pointer-events:none; background: rgba(0,0,0,.9); color: white; padding: 6px 8px; border-radius: 8px; font-size: 12px; }
+
+    #months {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 12px;
+  gap: 3px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* each month label is a tiny block so it doesn't force wrapping */
+#months div {
+  padding-left: 2px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
   </style>
 </head>
 <body>
@@ -27,20 +45,6 @@
 
   <p>abc</p>
 
-  #months {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 12px;
-  gap: 3px;
-  margin-left: 0px;   /* adjust later if you add day-of-week labels */
-  margin-bottom: 6px;
-  font-size: 11px;
-  color: #6b7280;
-}
-  #months div {
-  padding-left: 2px;
-  white-space: nowrap;
-}
 
 
   <div id="months"></div>
