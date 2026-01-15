@@ -100,6 +100,8 @@ function renderMonths(year) {
 
 
 function render() {
+  renderMonths(year);
+
   const year = Number(yearEl.value);
   gridEl.innerHTML = "";
 
