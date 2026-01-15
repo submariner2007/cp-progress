@@ -135,6 +135,10 @@ function render() {
     cell.className = "cell";
     cell.style.background = colorFor(hours);
 
+    if (dateStr === todayStr) {
+  cell.classList.add("today");
+}
+
     cell.addEventListener("mouseenter", (ev) => {
       showTooltip(ev.clientX, ev.clientY, `${dateStr}: ${hours} hour${hours === 1 ? "" : "s"}`);
     });
