@@ -81,7 +81,6 @@ function renderMonths(y) {
 
   const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-  // Use UTC to avoid DST causing off-by-one week shifts
   const startUTC = Date.UTC(y, 0, 1);
   const startDow = new Date(startUTC).getUTCDay(); // 0=Sun..6=Sat
 
@@ -91,8 +90,11 @@ function renderMonths(y) {
     return Math.floor((startDow + diffDays) / 7);
   };
 
+  let lastCol = -1;
   for (let m = 0; m < 12; m++) {
     const col = weekIndexUTC(y, m, 1);
+    if (col === lastCol) continue; // skip if it would overlap in same week column
+    lastCol = col;
 
     const label = document.createElement("div");
     label.textContent = names[m];
@@ -101,6 +103,7 @@ function renderMonths(y) {
     monthsEl.appendChild(label);
   }
 }
+
 
 
 
