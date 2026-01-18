@@ -68,7 +68,7 @@ async function loadFromCloud() {
     heatmapInterview = data.heatmapInterview || {};
   } else {
     heatmapProg = {};
-    heatmapOther = {};
+    heatmapInterview = {};
     await setDoc(ref, { heatmapProg, heatmapInterview }, { merge: true });
   }
 }
@@ -203,9 +203,9 @@ function render() {
 
 // Auth buttons
 loginBtn.onclick = async () => {
-  loginBtn.onclick = async () => {
   await signInWithPopup(auth, provider);
 };
+
 
 };
 logoutBtn.onclick = async () => {
