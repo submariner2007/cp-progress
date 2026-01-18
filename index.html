@@ -8,45 +8,51 @@
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 24px; }
     .top { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom: 12px; }
     button { padding: 8px 10px; cursor:pointer; }
-    #grid { display:grid; grid-auto-flow: column; grid-auto-columns: 12px; grid-template-rows: repeat(7, 12px); gap: 3px; padding: 10px; border: 1px solid #ddd; width: fit-content; }
-    .cell { width:12px; height:12px; border-radius:3px; background:#eee; border:1px solid rgba(0,0,0,.06); cursor:pointer; }
-    .cell:hover { outline: 2px solid rgba(0,0,0,.15); outline-offset: 1px; }
-    #tooltip { position: fixed; display:none; pointer-events:none; background: rgba(0,0,0,.9); color: white; padding: 6px 8px; border-radius: 8px; font-size: 12px; }
-
-    /* Match your grid's padding exactly */
-#months {
+    .months {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 12px;
   gap: 3px;
-
-  /* IMPORTANT: match #grid’s padding */
-  padding: 10px;             /* use the same padding as #grid */
-  padding-bottom: 0;         /* month row doesn't need bottom padding */
-  margin: 0;                 /* avoid extra offset */
+  padding: 10px;
+  padding-bottom: 0;
+  margin: 0;
   width: fit-content;
-
   font-size: 11px;
   color: #6b7280;
-
-  /* If your grid scrolls horizontally, the month row should too */
-  overflow: hidden;
 }
 
-#months div {
-  /* Anchor text to the LEFT edge of its column */
+.months div {
   justify-self: start;
   align-self: end;
-  transform: translateX(0); /* explicit; avoids odd centering */
   white-space: nowrap;
   line-height: 1;
-  font-variant-numeric: tabular-nums;
   pointer-events: none;
 }
-.cell.today {
-    outline: 2px solid rgba(37, 99, 235, 0.6);
-    outline-offset: 1px;
-  }
+
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 12px;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: fit-content;
+  margin-bottom: 18px;
+}
+
+.cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.06);
+  cursor: pointer;
+  transition: background-color 120ms ease, outline-color 120ms ease;
+}
+
+.cell:hover { outline: 2px solid rgba(0,0,0,.15); outline-offset: 1px; }
+.cell.today { outline: 2px solid rgba(37, 99, 235, 0.6); outline-offset: 1px; }
+
 
   </style>
 </head>
@@ -65,8 +71,14 @@
 
 
 
-  <div id="months"></div>
-  <div id="grid" aria-label="Heatmap grid"></div>
+  <h3>Programming</h3>
+<div id="months-prog"></div>
+<div id="grid-prog" aria-label="Programming heatmap grid"></div>
+  <div id="tooltip"></div>
+
+<h3>Interview</h3>
+<div id="months-interview"></div>
+<div id="grid-interview" aria-label="Interview practice heatmap grid"></div>
   <div id="tooltip"></div>
 
   <script type="module" src="./app.js"></script>
