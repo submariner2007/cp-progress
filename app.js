@@ -207,7 +207,6 @@ loginBtn.onclick = async () => {
 };
 
 
-};
 logoutBtn.onclick = async () => {
   await signOut(auth);
 };
@@ -217,14 +216,16 @@ yearEl.addEventListener("change", render);
 // When user logs in/out
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    uid = null;
-    heatmap = {};
-    statusEl.textContent = "not signed in";
-    loginBtn.style.display = "";
-    logoutBtn.style.display = "none";
-    render();
-    return;
-  }
+  uid = null;
+  heatmapProg = {};
+  heatmapInterview = {};
+  statusEl.textContent = "not signed in";
+  loginBtn.style.display = "";
+  logoutBtn.style.display = "none";
+  render();
+  return;
+}
+
   uid = user.uid;
   statusEl.textContent = `Signed in${user.displayName ? " as " + user.displayName : ""}.`;
   loginBtn.style.display = "none";
